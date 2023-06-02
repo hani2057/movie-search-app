@@ -9,6 +9,10 @@ const GlobalStyles = createGlobalStyle`
     font-style: normal;
   }
 
+  :root {
+    --main-color: #FFC9C9;
+  }
+
   *, *::before, *::after {
     box-sizing: border-box;
   }
