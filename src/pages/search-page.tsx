@@ -1,3 +1,9 @@
+import { SearchBar } from "../components/search-bar";
+
 export const SearchPage = () => {
-  return <>search</>;
+  return (
+    <>
+      <SearchBar />
+    </>
+  );
 };

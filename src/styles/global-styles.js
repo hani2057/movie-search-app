@@ -11,16 +11,13 @@ const GlobalStyles = createGlobalStyle`
 
   :root {
     --main-color: #FFC9C9;
+    --gray-color: #474747;
   }
 
   *, *::before, *::after {
     box-sizing: border-box;
   }
-  body {
-    font-family: 'Pretendard-Regular', Arial, Helvetica, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -48,6 +45,9 @@ const GlobalStyles = createGlobalStyle`
     display: block;
   }
   body {
+    font-family: 'Pretendard-Regular', Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     line-height: 1;
   }
   ol, ul {
