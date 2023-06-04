@@ -1,5 +1,7 @@
-import { ChangeEvent, KeyboardEvent } from "react";
+import { useState, ChangeEvent, KeyboardEvent } from "react";
 import { TbSearch } from "react-icons/tb";
+
+import { getMovies } from "../../api/get-movies";
 
 import {
   SearchBarWrapper,
@@ -7,7 +9,6 @@ import {
   SearchInput,
   SearchInputWrapper,
 } from "./style";
-import { useState } from "react";
 
 export const SearchBar = () => {
   const [keyword, setKeyword] = useState("");
@@ -16,10 +17,11 @@ export const SearchBar = () => {
   // 검색어가 빈 문자열이 아닌지 검사한 뒤 검색 요청
   const inspectAndSearch = () => {
     if (!keyword.trim().length) setErrMsg("검색어를 입력해주세요");
-    else fetchSearchByKeyword(keyword);
+    else {
+      getMovies({ keyword, pageNum: 1 });
+      setKeyword("");
+    }
   };
-
-  const fetchSearchByKeyword = (keyword: string) => {};
 
   return (
     <SearchBarWrapper>
