@@ -1,7 +1,9 @@
 import { useState, ChangeEvent, KeyboardEvent } from "react";
 import { TbSearch } from "react-icons/tb";
+import { useSetRecoilState } from "recoil";
 
 import { getMovies } from "../../api/get-movies";
+import { searchedMoviesState } from "../../store/search-state";
 
 import {
   SearchBarWrapper,
@@ -13,12 +15,16 @@ import {
 export const SearchBar = () => {
   const [keyword, setKeyword] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const setSearchedMovies = useSetRecoilState(searchedMoviesState);
 
-  // 검색어가 빈 문자열이 아닌지 검사한 뒤 검색 요청
-  const inspectAndSearch = () => {
+  // 검색어가 빈 문자열이 아닌지 검사한 뒤 검색 결과 저장
+  const inspectAndSearch = async () => {
     if (!keyword.trim().length) setErrMsg("검색어를 입력해주세요");
     else {
-      getMovies({ keyword, pageNum: 1 });
+      const res = await getMovies({ keyword, pageNum: 1 });
+      if (res.Response === "False") alert(res.Error);
+      else setSearchedMovies(res.Search);
+      // 검색어 초기화
       setKeyword("");
     }
   };

@@ -18,7 +18,6 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   (res) => {
     console.log("res", res);
-    if (res.data.Response === "False") alert(res.data.Error);
     return res.data;
   },
   (err) => Promise.reject(err)
