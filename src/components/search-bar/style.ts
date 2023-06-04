@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 const SearchBarWrapper = styled.div`
   width: 100%;
-  position: fixed;
-  top: 2rem;
-  padding: 0 2rem;
+  /* position: fixed; */
+  /* top: 2rem; */
+  padding: 2rem;
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
