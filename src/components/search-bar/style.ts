@@ -2,12 +2,14 @@ import styled from "styled-components";
 
 const SearchBarWrapper = styled.div`
   width: 100%;
-  /* position: fixed; */
-  /* top: 2rem; */
+  position: fixed;
+  top: 0;
   padding: 2rem;
+  padding-top: 3rem;
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
+  background-color: #ffffff;
 `;
 
 const SearchInputWrapper = styled.div<{ errMsg: string }>`
