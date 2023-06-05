@@ -10,6 +10,7 @@ const SearchBarWrapper = styled.div`
   justify-content: space-between;
   gap: 0.5rem;
   background-color: #ffffff;
+  z-index: 1;
 `;
 
 const SearchInputWrapper = styled.div<{ errMsg: string }>`

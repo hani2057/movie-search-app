@@ -14,15 +14,17 @@ import {
 interface ModalProps {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  type: "add" | "remove";
+  isFaved: boolean;
   title: string;
+  handleBtnClickFunc: () => void;
 }
 
 export const Modal: FunctionComponent<ModalProps> = ({
   isOpen,
   setIsOpen,
-  type,
+  isFaved,
   title,
+  handleBtnClickFunc,
 }) => {
   const modal = (
     <>
@@ -41,16 +43,16 @@ export const Modal: FunctionComponent<ModalProps> = ({
           >
             <ModalText bold={true}>{title}</ModalText>
             <ModalText>
-              {type === "add"
-                ? "영화를 즐겨찾기에 추가할까요?"
-                : "영화를 즐겨찾기에서 제거할까요?"}
+              {isFaved
+                ? "영화를 즐겨찾기에서 제거할까요?"
+                : "영화를 즐겨찾기에 추가할까요?"}
             </ModalText>
           </FlexDiv>
 
           <FlexDiv justify="space-evenly">
             <ModalBtn onClick={() => setIsOpen(false)}>취소</ModalBtn>
-            <ModalBtn colored={true}>
-              {type === "add" ? "즐겨찾기" : "즐겨찾기 제거"}
+            <ModalBtn colored={true} onClick={handleBtnClickFunc}>
+              {isFaved ? "즐겨찾기 제거" : "즐겨찾기"}
             </ModalBtn>
           </FlexDiv>
         </StyledModal>

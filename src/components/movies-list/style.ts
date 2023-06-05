@@ -31,6 +31,7 @@ const MovieItemWrapper = styled(FlexDiv)`
   justify-self: center;
   border: 1px solid var(--main-color);
   border-radius: 5px;
+  position: relative;
 
   &:hover {
     box-shadow: 0 0 1rem var(--main-color);
@@ -55,10 +56,24 @@ const MovieText = styled.p<{
   padding: 0.3rem 0.5rem;
 `;
 
+const FavedIcon = styled.div`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.8rem;
+
+  & svg {
+    stroke: var(--main-color);
+    stroke-width: 1px;
+    color: var(--main-color);
+  }
+`;
+
 export {
   MoviesListWrapper,
   NoResultText,
   MovieItemWrapper,
   MoviePoster,
   MovieText,
+  FavedIcon,
 };
