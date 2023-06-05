@@ -1,4 +1,4 @@
-export interface Movie {
+export interface MovieRes {
   Title: string;
   Year: string;
   imdbID: string;
@@ -8,9 +8,13 @@ export interface Movie {
 
 export interface MoviesApiRes {
   Response: string;
-  Search: Movie[];
+  Search: MovieRes[];
   totalResults: string;
   Error?: string;
+}
+
+export interface Movie extends MovieRes {
+  isFaved: boolean;
 }
 
 // 나중에 api 요청 함수에 구분해서 사용할 것

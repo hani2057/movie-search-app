@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, KeyboardEvent, useEffect } from "react";
 import { TbSearch } from "react-icons/tb";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 
 import { getMovies } from "../../api/get-movies";
 import {
@@ -9,6 +9,7 @@ import {
   searchToTalPagesState,
   searchedMoviesState,
 } from "../../store/search-state";
+import { favedMovieIdsState } from "../../store/favorite-state";
 
 import {
   SearchBarWrapper,
@@ -25,6 +26,8 @@ export const SearchBar = () => {
   const [pageNum, setPageNum] = useRecoilState(searchPageNumState);
   const [totalPages, setTotalPages] = useRecoilState(searchToTalPagesState);
   const setSearchedMovies = useSetRecoilState(searchedMoviesState);
+
+  const favedMovieIds = useRecoilValue(favedMovieIdsState);
 
   // 검색어가 빈 문자열이 아닌지 검사한 뒤 키워드 변경
   const handleSearch = () => {
@@ -43,7 +46,11 @@ export const SearchBar = () => {
       const res = await getMovies({ keyword, pageNum });
       if (res.Response === "False") setErrMsg(res.Error || "");
       else {
-        setSearchedMovies((prev) => [...prev, ...res.Search]);
+        const newMovies = res.Search.map((movie) => ({
+          ...movie,
+          isFaved: favedMovieIds.includes(movie.imdbID),
+        }));
+        setSearchedMovies((prev) => [...prev, ...newMovies]);
         setTotalPages(Math.ceil(Number(res.totalResults) / 10));
         if (pageNum === 1) window.scrollTo(0, 0);
       }
