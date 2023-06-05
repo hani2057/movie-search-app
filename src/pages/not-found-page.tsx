@@ -1,4 +1,4 @@
-import { FlexDiv } from "../components/common";
+import { FlexDiv } from "components/common";
 
 export const NotFoundPage = () => {
   return (

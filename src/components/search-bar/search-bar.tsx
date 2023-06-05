@@ -2,15 +2,15 @@ import { useState, useEffect } from "react";
 import { TbSearch } from "react-icons/tb";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 
-import { getMovies } from "../../api/get-movies";
+import { getMovies } from "api/get-movies";
 import {
   isLoadingState,
   searchKeywordState,
   searchPageNumState,
   searchToTalPagesState,
   searchedMoviesState,
-} from "../../store/search-state";
-import { favedMovieIdsState } from "../../store/favorite-state";
+} from "store/search-state";
+import { favedMovieIdsState } from "store/favorite-state";
 
 import {
   SearchBarWrapper,

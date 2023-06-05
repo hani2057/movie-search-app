@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
+import { Spinner } from "components/common";
 import {
   isLoadingState,
   searchPageNumState,
   searchedMoviesState,
-} from "../../store/search-state";
-import { Movie } from "../../types/movies";
+} from "store/search-state";
+import { Movie } from "types/movies";
+
 import { MovieItem } from "../movie-item";
-import { Spinner } from "../../components/common";
 import { MoviesListWrapper, NoResultText } from "./style";
 
 interface MoviesListProps {

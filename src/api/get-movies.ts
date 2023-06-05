@@ -1,5 +1,5 @@
-import { axios } from "../lib/axios";
-import { MoviesApiRes } from "../types/movies";
+import { axios } from "lib/axios";
+import { MoviesApiRes } from "types/movies";
 
 interface GetMoviesParams {
   keyword: string;

@@ -2,13 +2,10 @@ import { useState } from "react";
 import { TiHeartFullOutline, TiHeartOutline } from "react-icons/ti";
 import { useSetRecoilState, useRecoilState } from "recoil";
 
-import { Movie } from "../../types/movies";
-import { Modal } from "../../components/common";
-import {
-  favedMovieIdsState,
-  favedMoviesState,
-} from "../../store/favorite-state";
-import { searchedMoviesState } from "../../store/search-state";
+import { Modal } from "components/common";
+import { favedMovieIdsState, favedMoviesState } from "store/favorite-state";
+import { searchedMoviesState } from "store/search-state";
+import { Movie } from "types/movies";
 import { FavedIcon, MovieItemWrapper, MoviePoster, MovieText } from "./style";
 
 interface MovieItemProps {

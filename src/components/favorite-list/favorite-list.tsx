@@ -1,12 +1,9 @@
 import { useRecoilValue } from "recoil";
 
-import {
-  MoviesListWrapper,
-  NoResultText,
-} from "../../components/movies-list/style";
-import { MovieItem } from "../../components/movie-item";
-import { favedMoviesState } from "../../store/favorite-state";
-import { Movie } from "../../types/movies";
+import { MoviesListWrapper, NoResultText } from "components/movies-list/style";
+import { MovieItem } from "components/movie-item";
+import { favedMoviesState } from "store/favorite-state";
+import { Movie } from "types/movies";
 
 export const FavoriteList = () => {
   const favedMovies = useRecoilValue(favedMoviesState);
