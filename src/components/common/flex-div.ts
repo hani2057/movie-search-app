@@ -8,8 +8,9 @@ const FlexDiv = styled.div<{
   padding?: string;
   margin?: string;
   width?: string;
+  height?: string;
 }>`
-  ${({ direction, justify, align, gap, padding, margin, width }) => css`
+  ${({ direction, justify, align, gap, padding, margin, width, height }) => css`
     display: flex;
     flex-direction: ${direction || "row"};
     justify-content: ${justify || "center"};
@@ -18,6 +19,7 @@ const FlexDiv = styled.div<{
     padding: ${padding || "0"};
     margin: ${margin || "0"};
     width: ${width || "auto"};
+    height: ${height || "auto"};
   `}
 `;
 
