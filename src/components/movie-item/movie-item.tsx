@@ -26,8 +26,6 @@ export const MovieItem = ({
   const [searchedMoviesList, setSearchedMovies] =
     useRecoilState(searchedMoviesState);
 
-  console.log(searchedMoviesList);
-
   // favedList로부터 영화를 제거
   const removeFromFavedList = () => {
     setFavedMovies((prev) => prev.filter((movie) => movie.imdbID !== imdbID));

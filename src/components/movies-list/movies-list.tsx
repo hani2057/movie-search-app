@@ -2,11 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import {
+  isLoadingState,
   searchPageNumState,
   searchedMoviesState,
 } from "../../store/search-state";
 import { Movie } from "../../types/movies";
 import { MovieItem } from "../movie-item";
+import { Spinner } from "../../components/common";
 import { MoviesListWrapper, NoResultText } from "./style";
 
 interface MoviesListProps {
@@ -18,6 +20,7 @@ export const MoviesList = () => {
   const [targetDetected, setTargetDetected] = useState(false);
 
   const moviesList = useRecoilValue(searchedMoviesState);
+  const isLoading = useRecoilValue(isLoadingState);
   const setPageNum = useSetRecoilState(searchPageNumState);
 
   // scrollTarget이 감지되면 pageNum + 1
@@ -42,19 +45,20 @@ export const MoviesList = () => {
       {moviesList.length === 0 ? (
         <NoResultText>검색 결과가 없습니다.</NoResultText>
       ) : (
-        <MoviesListWrapper>
-          {moviesList.map((movie: Movie) => (
-            <MovieItem movie={movie} key={movie.imdbID} />
-          ))}
-          <div
-            ref={(el) => {
-              scrollTarget.current = el;
-              setTargetDetected(Boolean(el));
-            }}
-          >
-            loading
-          </div>
-        </MoviesListWrapper>
+        <>
+          <MoviesListWrapper>
+            {moviesList.map((movie: Movie) => (
+              <MovieItem movie={movie} key={movie.imdbID} />
+            ))}
+            {isLoading && <Spinner />}
+            <div
+              ref={(el) => {
+                scrollTarget.current = el;
+                setTargetDetected(Boolean(el));
+              }}
+            ></div>
+          </MoviesListWrapper>
+        </>
       )}
     </>
   );

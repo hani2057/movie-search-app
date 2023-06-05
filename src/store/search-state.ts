@@ -20,3 +20,8 @@ export const searchToTalPagesState = atom({
   key: "searchTotalPagesState",
   default: 0,
 });
+
+export const isLoadingState = atom({
+  key: "isLoadingState",
+  default: false,
+});
