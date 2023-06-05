@@ -4,7 +4,7 @@ import {
   MoviesListWrapper,
   NoResultText,
 } from "../../components/movies-list/style";
-import { MovieItem } from "../../components/movies-list/movie-item";
+import { MovieItem } from "../../components/movie-item";
 import { favedMoviesState } from "../../store/favorite-state";
 import { Movie } from "../../types/movies";
 

@@ -6,7 +6,7 @@ import {
   searchedMoviesState,
 } from "../../store/search-state";
 import { Movie } from "../../types/movies";
-import { MovieItem } from "./movie-item";
+import { MovieItem } from "../movie-item";
 import { MoviesListWrapper, NoResultText } from "./style";
 
 interface MoviesListProps {
