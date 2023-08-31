@@ -45,8 +45,13 @@ export const MoviesList = () => {
         <NoResultText>검색 결과가 없습니다.</NoResultText>
       ) : (
         <MoviesListWrapper>
-          {moviesList.map((movie: Movie) => (
-            <MovieItem movie={movie} key={movie.imdbID} />
+          {moviesList.map((movie: Movie, idx) => (
+            <MovieItem
+              movie={movie}
+              idx={idx}
+              type="search"
+              key={`${idx}-${movie.imdbID}`}
+            />
           ))}
           {isLoading && <Spinner type="loading" />}
           <div

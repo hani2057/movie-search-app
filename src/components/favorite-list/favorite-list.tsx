@@ -14,8 +14,13 @@ export const FavoriteList = () => {
         <NoResultText>즐겨찾기한 영화가 없습니다.</NoResultText>
       ) : (
         <MoviesListWrapper>
-          {favedMovies.map((movie: Movie) => (
-            <MovieItem movie={movie} key={movie.imdbID} />
+          {favedMovies.map((movie: Movie, idx) => (
+            <MovieItem
+              movie={movie}
+              idx={idx}
+              type="faved"
+              key={`${idx}-${movie.imdbID}`}
+            />
           ))}
         </MoviesListWrapper>
       )}

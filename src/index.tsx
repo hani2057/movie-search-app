@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import { RecoilRoot } from "recoil";
 
 import GlobalStyles from "styles/global-styles";
@@ -15,7 +17,9 @@ root.render(
     <RecoilRoot>
       <GlobalStyles />
       <BrowserRouter>
-        <App />
+        <DndProvider backend={HTML5Backend}>
+          <App />
+        </DndProvider>
       </BrowserRouter>
     </RecoilRoot>
   </React.StrictMode>
