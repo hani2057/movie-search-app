@@ -57,9 +57,10 @@ export const MovieItem = ({
     },
   });
 
-  const [, drag] = useDrag(() => ({
+  const [{ isDragging }, drag] = useDrag(() => ({
     type: "movie",
     item: () => ({ idx }),
+    collect: (monitor) => ({ isDragging: monitor.isDragging() }),
   }));
 
   // favedList로부터 영화를 제거
@@ -104,6 +105,7 @@ export const MovieItem = ({
         direction="column"
         onClick={() => setModalOpen(true)}
         ref={type === "faved" ? dragRef : null}
+        style={{ opacity: isDragging ? "0" : "1" }}
       >
         <FavedIcon>
           {movieFaved ? <TiHeartFullOutline /> : <TiHeartOutline />}
