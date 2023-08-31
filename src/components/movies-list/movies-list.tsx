@@ -12,10 +12,6 @@ import { Movie } from "types/movies";
 import { MovieItem } from "../movie-item";
 import { MoviesListWrapper, NoResultText } from "./style";
 
-interface MoviesListProps {
-  moviesList: Movie[];
-}
-
 export const MoviesList = () => {
   const scrollTarget = useRef<HTMLDivElement | null>(null);
   const [targetDetected, setTargetDetected] = useState(false);
@@ -43,23 +39,23 @@ export const MoviesList = () => {
 
   return (
     <>
-      {moviesList.length === 0 ? (
+      {moviesList.length === 0 && isLoading ? (
+        <Spinner type="search" />
+      ) : moviesList.length === 0 ? (
         <NoResultText>검색 결과가 없습니다.</NoResultText>
       ) : (
-        <>
-          <MoviesListWrapper>
-            {moviesList.map((movie: Movie) => (
-              <MovieItem movie={movie} key={movie.imdbID} />
-            ))}
-            {isLoading && <Spinner />}
-            <div
-              ref={(el) => {
-                scrollTarget.current = el;
-                setTargetDetected(Boolean(el));
-              }}
-            ></div>
-          </MoviesListWrapper>
-        </>
+        <MoviesListWrapper>
+          {moviesList.map((movie: Movie) => (
+            <MovieItem movie={movie} key={movie.imdbID} />
+          ))}
+          {isLoading && <Spinner type="loading" />}
+          <div
+            ref={(el) => {
+              scrollTarget.current = el;
+              setTargetDetected(Boolean(el));
+            }}
+          ></div>
+        </MoviesListWrapper>
       )}
     </>
   );

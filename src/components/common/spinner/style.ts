@@ -4,7 +4,15 @@ const spin = keyframes`
    100% {transform: rotate(1turn)}
 `;
 
-const SpinnerWrapper = styled.div`
+const SearchWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const LoadingWrapper = styled.div`
   position: relative;
   width: 100%;
   top: 1rem;
@@ -33,4 +41,4 @@ const SpinnerComponent = styled.div`
   animation: ${spin} 1s infinite steps(8);
 `;
 
-export { SpinnerWrapper, SpinnerComponent };
+export { SearchWrapper, LoadingWrapper, SpinnerComponent };

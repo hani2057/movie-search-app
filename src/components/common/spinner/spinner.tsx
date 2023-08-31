@@ -1,9 +1,21 @@
-import { SpinnerWrapper, SpinnerComponent } from "./style";
+import { SearchWrapper, LoadingWrapper, SpinnerComponent } from "./style";
 
-export const Spinner = () => {
+interface SpinnerProps {
+  type: "search" | "loading";
+}
+
+export const Spinner = ({ type }: SpinnerProps) => {
   return (
-    <SpinnerWrapper>
-      <SpinnerComponent />
-    </SpinnerWrapper>
+    <>
+      {type === "search" ? (
+        <SearchWrapper>
+          <SpinnerComponent />
+        </SearchWrapper>
+      ) : (
+        <LoadingWrapper>
+          <SpinnerComponent />
+        </LoadingWrapper>
+      )}
+    </>
   );
 };
