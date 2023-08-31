@@ -14,7 +14,7 @@ const SearchBarWrapper = styled.div`
 `;
 
 const SearchInputWrapper = styled.div<{ errMsg: string }>`
-  width: calc(100% - 3rem);
+  width: calc(100% - 4rem);
   height: 2.5rem;
   border: 2px solid var(--main-color);
   border-radius: 5px;
@@ -44,6 +44,7 @@ const SearchInput = styled.input`
 `;
 
 const SearchBtn = styled.button`
+  width: 3rem;
   height: 2.5rem;
   padding: 0.5rem;
   background-color: var(--main-color);

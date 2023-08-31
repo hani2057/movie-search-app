@@ -17,7 +17,6 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   (res) => {
-    console.log("res", res);
     return res.data;
   },
   (err) => Promise.reject(err)
