@@ -1,46 +1,94 @@
-# Getting Started with Create React App
+# 영화 검색 및 즐겨찾기 어플리케이션
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+배포 주소: https://movie-search-app-hani-kim.vercel.app/
 
-## Available Scripts
+로컬에서 실행할 경우
 
-In the project directory, you can run:
+```
+# CLONE REPOSITORY
+git clone https://github.com/hani2057/movie-search-app.git
+cd movie-search-app
 
-### `npm start`
+# INSTALLATION
+npm install
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# SET ENVIRONMENTAL VARIABLE
+touch .env.local
+echo REACT_APP_API_KEY={your omdb api key} > .env.local
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# START
+npm run start
+```
 
-### `npm test`
+<br>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 프로젝트 소개
 
-### `npm run build`
+<hr>
+한줄소개: 영화를 검색하고 즐겨찾기할 수 있습니다. <br>
+진행기간: 23.05.31. ~ 23.06.06. (1주) <br>
+인원: 1명
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 영화를 검색하면 결과가 무한스크롤의 카드 형식으로 표시됩니다.
+- 각 영화에는 즐겨찾기 여부가 아이콘으로 표시됩니다. 영화를 클릭하여 즐겨찾기에 추가 또는 즐겨찾기에서 제거할 수 있습니다. 즐겨찾기한 영화 정보는 다음 접속 시에도 확인할 수 있습니다.
+- 하단탭 우측의 즐겨찾기 탭을 선택하면 유저가 즐겨찾기한 영화 목록을 확인할 수 있습니다. 영화를 클릭하면 즐겨찾기에서 제거할 수 있습니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br>
 
-### `npm run eject`
+## 사용 기술 스택
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<hr>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| 구분             | 사용              |
+| ---------------- | ----------------- |
+| Language         | TypeScript        |
+| UI Framework     | React             |
+| State management | Recoil            |
+| CSS in JS        | styled-components |
+| Package manager  | npm               |
+| Linter           | Prettier          |
+| Deploy           | Vercel            |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<br>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 상세 구현 내용
 
-## Learn More
+<hr>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 하단 탭
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `react-router` 로 하단탭 버튼 클릭시 페이지 이동 routing
+- 하단탭은 공통 레이아웃으로 고정함
+- `styled-components`에서 `NavLink` 상속받아 svg 컴포넌트의 stroke와 fill 제어
+- UX를 고려하여 현재 유저가 머무르고 있는 탭에 상단 바 별도 표시
+
+### 영화 검색 탭
+
+1. 영화 검색 기능
+   - 검색어 입력창 autofocus로 페이지 진입시 바로 입력 가능하도록 함
+   - 검색어 입력 후 엔터 또는 검색 버튼 클릭시 영화 검색
+   - 검색어가 없거나 검색 결과가 없을 경우(`res.Response === "False"`) 검색어 입력창 하단에 에러메시지 표시
+2. 영화 검색 결과 표시
+   - 이미지, 제목, 연도, 타입을 포함한 컬럼 2개 카드 형태로 표시
+   - `Intersection observer api`를 이용하여 무한 스크롤 구현
+   - 검색어로 최초 호출시 totalResponse 개수를 store에 저장하여 더 불러올 결과가 있으면 호출함
+   - api 요청시 isLoading 상태를 통해 spinner 표시
+3. 즐겨찾기 여부 표시
+
+   - 영화 겸색 api response data를 store의 즐겨찾기 목록과 비교하여 isFaved 속성 추가
+   - 카드 우측 상단에 하트모양 아이콘으로 즐겨찾기 여부 표시
+
+4. 즐겨찾기 추가/제거
+   - React의 `portal`을 이용하여 모달 컴포넌트 생성
+   - isFaved 값에 따라 즐겨찾기에 추가 또는 즐겨찾기에서 제거 로직 실행
+
+### 즐겨찾기 탭
+
+- `recoil-persist`를 이용하여 즐겨찾기 목록 로컬스토리지에 저장
+
+### 기타
+
+- 404 Not Found 페이지에서 하단탭을 이용하여 바로 이동하도록 함
+- 즐겨찾기에 추가/제거하는 함수를 개별 영화 컴포넌트에 구현하여 영화 검색 탭과 즐겨찾기 탭에서 동일한 컴포넌트 사용하도록 함
